@@ -20,6 +20,11 @@ main {
     margin: 0 auto;
     max-width: 1400px;
     padding-block: 64px;
+    padding-inline: 16px;
+
+    @media (min-width: 768px) {
+        padding-inline: 32px;
+    }
 }
 
 a {
@@ -74,31 +79,44 @@ button {
     background-image: url("/images/intro-texture.png");
     background-size: cover;
     color: var(--page-header-text-color);
-    display: flex;
-    height: min(100dvh, 768px);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: 100dvh;
     justify-content: center;
     position: relative;
     width: 100%;
 
-    &__inner {
-        align-items: flex-start;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        justify-content: center;
-        max-width: 1400px;
+    @media (min-width: 768px) {
+        max-height: 768px;
+    }
+}
+
+.page-header__inner {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    justify-self: center;
+    max-width: 1400px;
+    padding-inline: 16px;
+    width: 100%;
+
+    @media (min-width: 768px) {
+        padding-inline: 32px;
     }
 }
 
 .page-header__title {
     color: var(--page-header-text-color);
-    font-size: 85px;
+    font-size: clamp(45px, 5vw, 85px);
     font-weight: bold;
     line-height: 1.2;
 }
 
 .page-header__subtitle {
-    font-size: 35px;
+    font-size: clamp(24px, 2vw, 35px);
     font-weight: normal;
     line-height: 1.2;
 }
