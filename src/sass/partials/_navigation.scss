@@ -1,8 +1,4 @@
 .navigation-wrapper {
-    left: 0;
-    padding: 8px;
-    position: absolute;
-    top: 0;
     width: 100%;
 }
 
@@ -41,12 +37,17 @@
     ul {
         align-items: center;
         display: flex;
+        flex-direction: column;
         gap: 16px;
         justify-content: center;
         list-style: none;
         margin: 0;
         overflow: hidden;
         padding: 0;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
     }
 }
 
