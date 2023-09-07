@@ -1,0 +1,26 @@
+---
+layout: layouts/base
+layoutType: home
+---
+
+<section class="page-intro">
+    {{ content }}
+</section>
+
+<section class="page-section">
+    <h2>Select an area below to learn more.</h2>
+    <ul class="page-cards">
+        {%  for page in collections.page %}
+            <li class="page-card">
+                <a href="{{ page.url }}" class="page-card__link">
+                    <div class="page-card__image-area">
+                        {% svg page.fileSlug %}
+                    </div>
+                    <div class="page-card__content">
+                        <p class="page-card__title">{{ page.data.title }}</p>
+                    </div>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>

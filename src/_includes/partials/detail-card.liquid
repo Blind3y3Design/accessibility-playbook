@@ -1,0 +1,25 @@
+<li class="detail-card">
+    <p class="detail-card__subtitle">{{ item.data.subTitle }}</p>
+    <p class="detail-card__title">{{ item.data.title }}</p>
+    <button class="detail-card__button">Show Explaination</button>
+    <div class="detail-card__content-wrap">
+        <div class="detail-card__content">
+            {{ item.content }}
+
+            {% if item.data.additionalResources %}
+                <div class="detail-card__resources">
+                    <p class="detail-card__resource-heading">Additional Resources</p>                                    
+                    <ul class="detail-card__resource-list">
+                        {% for resource in item.data.additionalResources %}
+                            <li class="detail-card__resource">
+                                <a href="{{ resource.link }}">
+                                    {{ resource.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</li>
