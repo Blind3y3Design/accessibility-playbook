@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    min-height: 50dvh;
+    flex-direction: column;
+    gap: 64px;
+    margin: 0 auto;
+    max-width: 1400px;
+    padding-block: 64px;
+}
+
+a {
+    color: var(--text-color);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    margin: 0;
+}
+
+h1 {
+    font-size: 85px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 35px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    font-family: var(--font-family);
+}
+
+.page-header {
+    align-items: center;
+    background-blend-mode: overlay;
+    background-color: var(--page-header-background-color);
+    background-image: url("/images/intro-texture.png");
+    background-size: cover;
+    color: var(--page-header-text-color);
+    display: flex;
+    height: min(100dvh, 768px);
+    justify-content: center;
+    position: relative;
+    width: 100%;
+
+    &__inner {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        justify-content: center;
+        max-width: 1400px;
+    }
+}
+
+.page-header__title {
+    color: var(--page-header-text-color);
+    font-size: 85px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.page-header__subtitle {
+    font-size: 35px;
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+.page-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+
+    p {
+        max-width: 72ch;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding-inline-start: 16px;
+    }
+}
+
+.page-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+}

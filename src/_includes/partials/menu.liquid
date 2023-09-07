@@ -1,0 +1,19 @@
+<nav class="main-nav">
+    <ul role="navigation">
+        <li>
+            <a href="/" class="nav__link {% if page.url == "/" %}nav__link--active{% endif %}">Home</a>
+        </li>
+        <li>
+            <a href="/basics" class="nav__link {% if page.url contains "basics" %}nav__link--active{% endif %}">Basics</a>
+        </li>
+        <li>
+            <a href="/product-managers" class="nav__link {% if page.url contains "product-managers" %}nav__link--active{% endif %}">Product Managers</a>
+        </li>
+        <li>
+            <a href="/designers" class="nav__link {% if page.url contains "designers" %}nav__link--active{% endif %}">Designers</a>
+        </li>
+        <li>
+            <a href="/developers" class="nav__link {% if page.url contains "developers" %}nav__link--active{% endif %}">Developers</a>
+        </li>
+    </ul>
+</nav>
