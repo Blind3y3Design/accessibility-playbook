@@ -7,6 +7,8 @@ sectionHeadings: ["Accessibility Laws & Standards", "Accessibility Principles (P
 eleventyImport:
   collections: ["laws", "principles", "levels"]
 footerResources:
+    - title: "Web.dev Learn Accessibility course"
+      link: https://web.dev/learn/accessibility/
     - title: "WCAG 2.1 Full Spec"
       link: https://www.w3.org/TR/WCAG21/
     - title: "Understanding the WCAG Docs"
