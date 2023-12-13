@@ -1,0 +1,168 @@
+---
+import { Icon } from 'astro-icon';
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+---
+
+<header class="nav-header">
+  <a href="/" class="home-link">
+    <Icon class="home-logo" name="logo" />
+  </a>
+  <nav class="main-nav">
+    <button class="menu-button">
+      <span class="menu-icon menu-icon-left"></span>
+      <span class="menu-icon"></span>
+      <span class="menu-icon menu-icon-right"></span>
+    </button>
+    <ul class="main-nav__items">
+      <li class="main-nav__item">
+        <a class={currentPath === "basics" ? "active" : ""} href="/basics">
+          Basics
+        </a>
+      </li>
+      <li class="main-nav__item">
+        <a
+          class={currentPath === "designers" ? "active" : ""}
+          href="/designers"
+        >
+          Designers
+        </a>
+      </li>
+      <li class="main-nav__item">
+        <a
+          class={currentPath === "developers" ? "active" : ""}
+          href="/developers"
+        >
+          Developers
+        </a>
+      </li>
+      <li class="main-nav__item">
+        <a
+          class={currentPath === "product-managers" ? "active" : ""}
+          href="/product-managers"
+        >
+          Product Managers
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .nav-header {
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    padding: 16px;
+  }
+
+  .home-logo {
+    fill: var(--text-color);
+    height: 40px;
+    width: 40px;
+  }
+
+  .main-nav {
+    position: relative;
+  }
+
+  .main-nav__items {
+    display: none;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+
+    @media (min-width: 768px) {
+      display: flex;
+    }
+  }
+
+  .main-nav__item {
+    list-style: none;
+
+    a {
+      border-radius: 4px;
+      color: var(--text-color);
+      display: block;
+      font-size: var(--font-size-md);
+      font-weight: 200;
+      padding: 4px 8px;
+      text-decoration: none;
+      width: 100%;
+
+      &:hover {
+        background: rgba(var(--accent-color-rgb), 0.25);
+      }
+    }
+  }
+
+  .menu-button {
+    --size: 30px;
+
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: var(--size);
+    justify-content: center;
+    padding: 0
+    width: var(--size);
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+  .menu-icon {
+    height: 2px;
+    width: var(--size);
+    display: block;
+    background-color: var(--text-color);
+    transition:
+      transform 0.2s ease,
+      background-color 0.5s ease;
+  }
+  .menu-icon-left {
+    width: calc(var(--size) / 2);
+  }
+  .menu-icon-right {
+    align-self: flex-end;
+    width: calc(var(--size) / 2);
+  }
+
+  /* Active Menu Styles */
+  .main-nav.active {
+    .main-nav__items {
+      @media (max-width: 767px) {
+        background: var(--box-color);
+        border: var(--box-border);
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        position: absolute;
+        right: 0;
+        top: calc(100% + 8px);
+        width: max-content;
+        z-index: 1;
+      }
+    }
+
+    .menu-icon {
+      transform: translateX(0px) rotate(-45deg);
+    }
+    .menu-icon-left {
+      transform: translateX(1px) rotate(45deg);
+    }
+    .menu-icon-right {
+      transform: translateX(-2px) rotate(45deg);
+    }
+  }
+</style>
+
+<script>
+  const menuButton: HTMLElement = document.querySelector(".menu-button") as HTMLElement;
+  const nav: HTMLElement = document.querySelector(".main-nav") as HTMLElement;
+  menuButton.onclick = () => {
+    nav.classList.toggle("active");
+  };
+</script>

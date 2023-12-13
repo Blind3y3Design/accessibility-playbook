@@ -1,0 +1,47 @@
+body {
+  background: var(--page-background);
+  color: var(--text-color);
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  font-size: var(--font-size-xxxl);
+  font-weight: 500;
+}
+
+h2 {
+  font-size: var(--font-size-xxl);
+  font-weight: 500;
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 500;
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+}
+
+p {
+  font-size: var(--font-size-md);
+  font-weight: 300;
+}
+
+a {
+  color: var(--accent-color-light);
+  text-decoration: 0 underline;
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 0.2ex;
+  transition: all 0.15s ease-in-out;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration-thickness: 2px;
+  }
+}
+
+.hidden {
+  display: none;
+}

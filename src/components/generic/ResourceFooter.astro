@@ -1,0 +1,96 @@
+---
+interface Resource {
+  link: string;
+  title: string;
+}
+
+interface Props {
+  resources: Array<Resource>;
+}
+
+const { resources } = Astro.props;
+---
+
+<footer class="resource-footer">
+  <div class="resource-footer__inner">
+    <h2 class="resource-footer__header">
+      More Resources for Accessible Products
+    </h2>
+    <ul class="footer-resources">
+      {
+        resources.map((resource) => (
+          <li class="footer-resource">
+            <a href={resource.link} class="footer-resource__link">
+              <svg
+                width="18"
+                height="19"
+                viewBox="0 0 18 19"
+                xmlns="http://www.w3.org/2000/svg"
+                class="footer-resource__icon"
+              >
+                <g clip-path="url(#clip0_1_383)">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M8.84886 2.67718C9.87431 0.90105 12.1536 0.316222 13.9322 1.34311C15.7108 2.37001 16.344 4.63633 15.3186 6.41246L12.7925 10.7876C11.7671 12.5638 9.48782 13.1486 7.70919 12.1217C7.35047 11.9146 7.22757 11.4559 7.43467 11.0972C7.64178 10.7385 8.10047 10.6155 8.45919 10.8227C9.53624 11.4445 10.8914 11.0806 11.4935 10.0376L14.0195 5.66246C14.6217 4.61952 14.2593 3.26399 13.1822 2.64215C12.1052 2.02032 10.75 2.38424 10.1479 3.42718L9.44623 4.6425C9.23912 5.00122 8.78043 5.12413 8.42171 4.91702C8.06299 4.70992 7.94008 4.25122 8.14719 3.8925L8.84886 2.67718Z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M4.50431 8.21172C5.52976 6.4356 7.80904 5.85077 9.58767 6.87766C9.94639 7.08477 10.0693 7.54346 9.86219 7.90218C9.65508 8.2609 9.19639 8.38381 8.83767 8.1767C7.76062 7.55487 6.40549 7.91879 5.80335 8.96172L3.27734 13.3369C2.6752 14.3798 3.03761 15.7354 4.11465 16.3572C5.1917 16.979 6.54683 16.6151 7.14897 15.5722L7.85063 14.3569C8.05774 13.9981 8.51643 13.8752 8.87515 14.0823C9.23387 14.2894 9.35678 14.7481 9.14967 15.1069L8.448 16.3222C7.42256 18.0983 5.14328 18.6831 3.36465 17.6562C1.58602 16.6293 0.952859 14.363 1.97831 12.5869L4.50431 8.21172Z"
+                  />
+                </g>
+              </svg>
+              {resource.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .resource-footer {
+    display: flex;
+    justify-content: center;
+    padding: 64px;
+  }
+  .resource-footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: space-between;
+    max-width: 1400px;
+    width: 100%;
+  }
+
+  .resource-footer__header {
+  }
+
+  .footer-resources {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-resource {
+    list-style: none;
+  }
+
+  .footer-resource__link {
+    align-items: center;
+    display: flex;
+    font-size: var(--font-size-md);
+    gap: 8px;
+    width: fit-content;
+  }
+
+  .footer-resource__icon {
+    fill: var(--text-color);
+    height: 18px;
+    width: 18px;
+  }
+</style>

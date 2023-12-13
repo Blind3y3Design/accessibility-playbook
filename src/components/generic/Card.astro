@@ -1,0 +1,161 @@
+---
+interface Resource {
+  link: string;
+  title: string;
+}
+
+interface Props {
+  title: string;
+  subTitle: string;
+  additionalResources: Array<Resource>;
+}
+
+const { title, subTitle, additionalResources } = Astro.props;
+---
+
+<li class="detail-card">
+  <p class="detail-card__subtitle">{subTitle}</p>
+  <p class="detail-card__title">{title}</p>
+  <button class="detail-card__button">Show Explaination</button>
+  <div class="detail-card__content-wrap">
+    <div class="detail-card__content">
+      <slot />
+
+      {
+        additionalResources && (
+          <div class="detail-card__resources">
+            <p class="detail-card__resource-heading">Additional Resources</p>
+            <ul class="detail-card__resource-list">
+              {additionalResources.map((resource) => (
+                <li class="detail-card__resource">
+                  <a href={resource.link}>{resource.title}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</li>
+<style>
+  .detail-card {
+    align-items: flex-start;
+    background: var(--box-color);
+    border: var(--box-border);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 368px;
+    padding: 16px;
+    width: 100%;
+  }
+
+  .detail-card__subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .detail-card__title {
+    border-inline-start: 4px solid var(--accent-color);
+    font-size: var(--font-size-md);
+    font-weight: bold;
+    line-height: 1.2;
+    padding-inline-start: 8px;
+  }
+
+  .detail-card__button {
+    background: var(--accent-color);
+    border: none;
+    border-radius: 2px;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    line-height: 1;
+    margin-inline-start: auto;
+    padding: 8px 16px;
+    text-decoration: 0 underline;
+    text-decoration-skip-ink: auto;
+    text-underline-offset: 0.2ex;
+    transition: all 0.15s ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--accent-color-dark);
+      text-decoration-thickness: 2px;
+    }
+  }
+
+  .detail-card__content-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .detail-card__content-wrap--open {
+    grid-template-rows: 1fr;
+  }
+
+  .detail-card__content {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-base);
+    gap: 8px;
+    overflow: hidden;
+
+    > p {
+      font-size: var(--font-size-base);
+    }
+
+    > ul {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-inline-start: 16px;
+
+      li {
+        list-style: disc;
+      }
+    }
+  }
+
+  .detail-card__resources {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .detail-card__resource-heading {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+
+  .detail-card__resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+  }
+
+  .detail-card__resource {
+    font-size: var(--font-size-sm);
+    list-style: none;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll(".detail-card__button");
+
+  function toggleCardDetails(event: any) {
+    const detailCard = event.target.parentNode;
+    detailCard
+      .querySelector(".detail-card__content-wrap")
+      .classList.toggle("detail-card__content-wrap--open");
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", toggleCardDetails);
+  });
+</script>
