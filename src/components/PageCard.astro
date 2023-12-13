@@ -1,0 +1,105 @@
+---
+import { Icon } from "astro-icon";
+
+interface Props {
+  page: string;
+  title: string;
+  description?: string;
+}
+
+const { page, title, description } = Astro.props;
+---
+
+<div class="page-card">
+  <a href=`/${page}` class="page-card__link">
+    <div class="page-card__header">
+      <Icon class="page-card__icon" name={page} />
+      <p class="page-card__title">{title}</p>
+    </div>
+    {
+      description && (
+        <div class="page-card__content">
+          <p class="page-card__description">{description}</p>
+        </div>
+      )
+    }
+  </a>
+</div>
+
+<style>
+  .page-card {
+    display: flex;
+  }
+
+  .page-card__link {
+    align-items: center;
+    background: var(--box-color);
+    border: var(--box-border);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 32px;
+    text-decoration: none;
+    width: 100%;
+  }
+
+  .page-card__header {
+    align-items: center;
+    display: flex;
+    gap: 32px;
+    width: 100%;
+  }
+
+  .page-card__icon {
+    aspect-ratio: 1/1;
+    fill: var(--accent-color-light);
+    flex-shrink: 0;
+    height: 32px;
+    width: 32px;
+  }
+
+  .page-card__title {
+    border-inline-start: 2px solid var(--text-color);
+    color: var(--text-color);
+    font-size: var(--font-size-lg);
+    padding-inline: 16px;
+    padding-block: 4px;
+    position: relative;
+    transition: color 0.3s ease;
+    z-index: 0;
+  }
+
+  .page-card__title::before {
+    background: var(--text-color);
+    content: " ";
+    display: block;
+    inset: 0 0 0 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
+
+  .page-card__description {
+    color: var(--text-color);
+    font-size: var(--font-size-md);
+  }
+
+  /* Hover/Focus Styles */
+  .page-card__link:hover,
+  .page-card__link:focus-visible {
+    .page-card__title {
+      color: var(--accent-color-dark);
+    }
+    .page-card__title::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+</style>

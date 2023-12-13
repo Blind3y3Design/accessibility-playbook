@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Home.astro";
+import Section from "../components/generic/Section.astro";
+import PageCard from "../components/PageCard.astro";
+---
+
+<Layout
+  pageTitle="Accessibility Playbook"
+  description="Accessibility is incredibly important, yet often overlooked in traditional digital design and development education. This playbook aims to be a resource for teams and idividuals to learn how to create beautiful, accessible, and inclusive digital experiences."
+>
+  <Section title="Select an area below to learn more">
+    <div class="page-cards">
+      <PageCard
+        page="basics"
+        title="Understanding Accessibility Basics"
+        description="Introduction to the basics of accessibility. Here we will outline the fundamentals of what accessibility is, what the relevant standards are, and how we think about accessibility."
+      />
+      <PageCard
+        page="designers"
+        title="Accessibility for Designers"
+        description="Starter guide for designers. Dig into how design affects accessibility and the patterns we can use to ensure the product we create are usable by everyone."
+      />
+      <PageCard
+        page="developers"
+        title="Accessibility for Developers"
+        description="Learn how to use standards compliant and semantic markup, consistent styling decisions, and the proper application of ARIA attributes to provide everyone with an enjoyable, and more importantly, usable experience."
+      />
+      <PageCard
+        page="product-managers"
+        title="Accessibility for Product Managers"
+        description="Learn how product teams deliver accessible experiences. Understanding the role accessibility plays in the product development cycle is critical to success."
+      />
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .page-cards {
+    align-items: normal;
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

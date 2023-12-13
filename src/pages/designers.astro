@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Overview.astro";
+import Intro from "../components/Intro.astro";
+import Section from "../components/generic/Section.astro";
+import CardList from "../components/CardList.astro";
+import DesignCard from "../components/DesignCard.astro";
+
+import { getCollection, getEntry } from "astro:content";
+
+const pageContent = await getEntry("design", "intro");
+const { Content } = await pageContent.render();
+
+const operatingEntries = await getCollection("design", ({ data }) => {
+  return data.tags.includes("operating");
+});
+
+const colorEntries = await getCollection("design", ({ data }) => {
+  return data.tags.includes("color");
+});
+
+const designOtherEntries = await getCollection("design", ({ data }) => {
+  return data.tags.includes("design-other");
+});
+---
+
+<Layout
+  pageTitle={pageContent.data.title}
+  description={pageContent.data.subTitle}
+  resources={[
+    {
+      title:
+        "Inclusive Components, a blog about designing inclusive web interfaces",
+      link: "https://inclusive-components.design/",
+    },
+    {
+      title: "Personas for Accessible UX",
+      link: "https://www.slideshare.net/whitneyq/personas-for-accessible-ux",
+    },
+    {
+      title:
+        "Things to consider when doing usability testing with disabled people",
+      link: "https://frozenrockets.nl/articles/en/user-testing-with-disabled-people",
+    },
+  ]}
+>
+  <Intro>
+    <Content />
+  </Intro>
+  <Section title="Operating and Navigating">
+    <CardList>
+      {operatingEntries.map((entry) => <DesignCard {entry} />)}
+    </CardList>
+  </Section>
+  <Section title="Color Use">
+    <CardList>
+      {colorEntries.map((entry) => <DesignCard {entry} />)}
+    </CardList>
+  </Section>
+  <Section title="Other Notes">
+    <CardList>
+      {designOtherEntries.map((entry) => <DesignCard {entry} />)}
+    </CardList>
+  </Section>
+</Layout>

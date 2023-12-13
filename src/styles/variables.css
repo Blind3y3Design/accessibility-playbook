@@ -1,0 +1,19 @@
+:root {
+  --font-size-sm: clamp(0.98rem, -0.24vw + 1.03rem, 0.84rem);
+  --font-size-base: clamp(1.13rem, 0vw + 1.13rem, 1.13rem);
+  --font-size-md: clamp(1.29rem, 0.37vw + 1.22rem, 1.5rem);
+  --font-size-lg: clamp(1.49rem, 0.93vw + 1.3rem, 2rem);
+  --font-size-xl: clamp(1.71rem, 1.73vw + 1.36rem, 2.66rem);
+  --font-size-xxl: clamp(1.97rem, 2.88vw + 1.39rem, 3.55rem);
+  --font-size-xxxl: clamp(2.26rem, 4.49vw + 1.36rem, 4.73rem);
+
+  --text-color: #fefefe;
+  --page-background: #0e0d15;
+  --accent-color-light: #b4a0ee;
+  --accent-color: #714bde;
+  --accent-color-rgb: 133, 75, 222;
+  --accent-color-dark: #411ea4;
+
+  --box-color: #1e1d22;
+  --box-border: 2px solid #3b344b;
+}
