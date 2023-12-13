@@ -1,0 +1,60 @@
+---
+import Layout from "./Layout.astro";
+import Hero from "../components/generic/Hero.astro";
+import ResourceFooter from "../components/generic/ResourceFooter.astro";
+const { pageTitle, description, resources } = Astro.props;
+---
+
+<Layout pageTitle={pageTitle}>
+  <main>
+    <Hero headline={pageTitle} description={description} />
+    <div class="main-content">
+      <div class="bg-grid"></div>
+      <slot />
+    </div>
+    <ResourceFooter resources={resources} />
+  </main>
+</Layout>
+
+<style>
+  .main-content {
+    align-items: center;
+    display: grid;
+    gap: 64px;
+    grid-template-columns: fit-content(1400px);
+    justify-content: center;
+    min-height: 50dvh;
+    padding-block: 64px;
+    padding-inline: 16px;
+    position: relative;
+
+    @media (min-width: 768px) {
+      padding-inline: 32px;
+    }
+  }
+  .bg-grid {
+    background-size: 100px 100px;
+    z-index: -2;
+    background-image: url(/assets/bg-grid.png);
+    background-position-y: -9px;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      10%,
+      white,
+      90%,
+      transparent
+    );
+    inset: 0;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      10%,
+      white,
+      90%,
+      transparent
+    );
+    position: absolute;
+    z-index: -1;
+  }
+</style>

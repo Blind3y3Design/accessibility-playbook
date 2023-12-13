@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Overview.astro";
+import Intro from "../components/Intro.astro";
+import Section from "../components/generic/Section.astro";
+import CardList from "../components/CardList.astro";
+import PMCard from "../components/PMCard.astro";
+
+import { getCollection, getEntry } from "astro:content";
+
+const pageContent = await getEntry("pm", "intro");
+const { Content } = await pageContent.render();
+
+const pmEntries = await getCollection("pm", ({ data }) => {
+  return data.tags.includes("product-management");
+});
+---
+
+<Layout
+  pageTitle={pageContent.data.title}
+  description={pageContent.data.subTitle}
+  resources={[
+    {
+      title: "Web Accessibility Laws & Policies",
+      link: "https://www.w3.org/WAI/policies/",
+    },
+    {
+      title: "WCAG 2.1 at a Glance",
+      link: "https://www.w3.org/WAI/standards-guidelines/wcag/glance/",
+    },
+  ]}
+>
+  <Intro>
+    <Content />
+  </Intro>
+  <Section title="Planning and Understanding">
+    <CardList>
+      {pmEntries.map((entry) => <PMCard {entry} />)}
+    </CardList>
+  </Section>
+</Layout>

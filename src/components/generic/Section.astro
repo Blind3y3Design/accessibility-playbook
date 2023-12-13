@@ -1,0 +1,22 @@
+---
+interface Props {
+  sectionClass?: string;
+  title?: string;
+}
+
+const { title, sectionClass } = Astro.props;
+---
+
+<section class=`page-section ${sectionClass && sectionClass}`>
+  {title && <h2 class="page-section__header">{title}</h2>}
+  <slot />
+</section>
+
+<style>
+  .page-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+  }
+</style>

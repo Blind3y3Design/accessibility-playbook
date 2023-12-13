@@ -1,0 +1,76 @@
+---
+import Layout from "../layouts/Overview.astro";
+import Intro from "../components/Intro.astro";
+import Section from "../components/generic/Section.astro";
+import CardList from "../components/CardList.astro";
+import BasicsCard from "../components/BasicsCard.astro";
+
+import { getCollection, getEntry } from "astro:content";
+
+const pageContent = await getEntry("basics", "intro");
+const { Content } = await pageContent.render();
+
+const lawEntries = await getCollection("basics", ({ data }) => {
+  return data.tags.includes("laws");
+});
+
+const principleEntries = await getCollection("basics", ({ data }) => {
+  return data.tags.includes("principles");
+});
+
+principleEntries.sort((a, b) => {
+  if (
+    typeof a.data.index === "undefined" ||
+    typeof b.data.index === "undefined"
+  ) {
+    return 0;
+  }
+  return a.data.index - b.data.index;
+});
+
+const levelEntries = await getCollection("basics", ({ data }) => {
+  return data.tags.includes("levels");
+});
+---
+
+<Layout
+  pageTitle={pageContent.data.title}
+  description={pageContent.data.subTitle}
+  resources={[
+    {
+      title: "Web.dev Learn Accessibility course",
+      link: "https://web.dev/learn/accessibility/",
+    },
+    {
+      title: "WCAG 2.1 Full Spec",
+      link: "https://www.w3.org/TR/WCAG21/",
+    },
+    {
+      title: "Understanding the WCAG Docs",
+      link: "https://www.w3.org/WAI/WCAG21/Understanding/",
+    },
+    {
+      title: "WCAG 2.1 at a Glance",
+      link: "https://www.w3.org/WAI/standards-guidelines/wcag/glance/",
+    },
+  ]}
+>
+  <Intro>
+    <Content />
+  </Intro>
+  <Section title="Accessibility Laws & Standards">
+    <CardList>
+      {lawEntries.map((entry) => <BasicsCard {entry} />)}
+    </CardList>
+  </Section>
+  <Section title="Accessibility Principles (POUR)">
+    <CardList>
+      {principleEntries.map((entry) => <BasicsCard {entry} />)}
+    </CardList>
+  </Section>
+  <Section title="Accessibility Compliance Levels (A, AA, AAA)">
+    <CardList>
+      {levelEntries.map((entry) => <BasicsCard {entry} />)}
+    </CardList>
+  </Section>
+</Layout>
