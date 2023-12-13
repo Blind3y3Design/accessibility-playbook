@@ -1,13 +1,17 @@
 {
-  "name": "",
+  "name": "accessibility-playbook",
   "type": "module",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blind3y3Design/accessibility-playbook.git"
   },
   "dependencies": {
     "@astrojs/check": "^0.3.1",
